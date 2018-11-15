@@ -1,0 +1,66 @@
+body {
+  background-image: url('https://images.unsplash.com/photo-1536718453717-7982aa9d8bed?ixlib=rb-0.3.5&ixid=eyJhcHBfaWQiOjEyMDd9&s=a4406de7a1516e8fabca1d273cd969a0&auto=format&fit=crop&w=750&q=80');
+  background-repeat: no-repeat;
+  background-size: cover;
+  background-position: center;
+  font-family: 'Georgia', serif
+}
+
+#app {
+  color: white;
+}
+
+h1 {
+  text-align: center;
+}
+
+.display {
+    border: 1px solid blue;
+    padding: 10px;
+}
+
+.drum-button-container {
+  display: inline-grid;
+  grid-template-columns: auto auto auto;
+  border: 1px solid white;
+  width: 75%;
+  margin: 1%;
+  background: rgba(0, 0, 0, 0.7)
+}
+
+audio {
+  border: 1px solid green
+}
+
+.drumpad {
+  border: 1px solid white
+}
+
+.drumButton {
+  display: grid;
+  border: 1px solid grey;
+  padding: 5px;
+}
+
+.rightSide {
+  display: inline-grid;
+  width: 20%;
+  border: 1px solid white;
+  background: rgba(0, 0, 0, 0.5)
+}
+
+.powerButton {
+  display: inline-grid;
+  border: 1px solid;
+  margin-bottom: 15px;
+  text-align: center;
+  padding: 10px;
+}
+
+.display {
+  display: inline-grid;
+  text-align: center;
+  margin-top: 15px;
+  border: 1px dotted;
+  background-color: #a89d5a
+}

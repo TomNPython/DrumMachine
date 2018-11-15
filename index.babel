@@ -1,0 +1,122 @@
+class DrumMachine extends React.Component {
+  constructor(props) {
+    super(props)
+    this.state = {
+      drums: drumSounds,
+      display: 'Display'
+    }
+  }
+  
+ // show name of drumsound in textbox
+ handleDisplay = displaytext => {
+   this.setState({display: displaytext})
+ }
+  
+  render() {
+    return (
+    <div id='drum-machine'>   
+      <div id='display'>
+        <h1>Machine of Drums</h1>
+        <div className='drum-button-container'>{drumSounds.map(sound => (
+        <DrumPad 
+          name={sound.name} 
+          id={sound.key} 
+          letter={sound.letter} 
+          src={sound.src} 
+          handleDisplay={this.handleDisplay}
+          />))}
+        </div>
+        <div className='rightSide'>
+        <div className='powerButton'>
+          Power</div>
+        <div className='display'>
+         {this.state.display}</div>
+        </div>
+        </div>
+        </div>         
+    )
+  }
+}
+
+
+
+class DrumPad extends React.Component {
+
+  componentWillMount() {
+    document.addEventListener('keydown', this.handleKeyPress)
+  }
+  
+  componentWillUnmount() {
+    document.removeEventListener('keydown', this.handleKeyPress)
+  }
+  
+ //allow for clicks to play sound 
+ handleClick = () => {
+   this.audio.play()
+   this.audio.currentTime = 0      
+   this.props.handleDisplay(this.props.name)
+ }
+ 
+ //allow for keypresses to play sound
+ handleKeyPress = (e) => {
+   if (e.keyCode == this.props.id.charCodeAt()) {
+    this.handleClick() 
+   }
+ }
+  
+    render() {
+    return ( <div className='drumButton' onClick={this.handleClick}>
+      <h1>{this.props.letter}</h1>
+      <audio id={this.props.name} src={this.props.src} ref={ref => this.audio = ref}></audio></div>
+    )
+  } }
+
+// array of objects representing drumpads
+const drumSounds = [{name: 'Heater-1',
+                    src: 'https://s3.amazonaws.com/freecodecamp/drums/Heater-1.mp3',
+                    key: 'Q', 
+                    letter: 'Q'}, 
+                    {name: 'Heater-2',
+                    src: 'https://s3.amazonaws.com/freecodecamp/drums/Heater-2.mp3',
+                    key: 'W', 
+                    letter: 'W'}, 
+                    {name: 'Heater-3',
+                    src: 'https://s3.amazonaws.com/freecodecamp/drums/Heater-3.mp3',
+                    key: 'E', 
+                    letter: 'E'}, 
+                    {name: 'Heater-4_1',
+                    src: 'https://s3.amazonaws.com/freecodecamp/drums/Heater-4_1.mp3',
+                    key: 'A', 
+                    letter: 'A'}, 
+                    {name: 'Heater-6', 
+                    src: 'https://s3.amazonaws.com/freecodecamp/drums/Heater-6.mp3', 
+                    key: 'S',
+                    letter: 'S'},
+                    {name: 'Dsc-Oh',
+                    src: 'https://s3.amazonaws.com/freecodecamp/drums/Dsc_Oh.mp3',
+                    key: 'D', 
+                    letter: 'D'}, 
+                    {name: 'Kick-n-Hat',
+                    src: 'https://s3.amazonaws.com/freecodecamp/drums/Kick_n_Hat.mp3',
+                    key: 'Z', 
+                    letter: 'Z'}, 
+                    {name: 'RP4-Kick',
+                    src: 'https://s3.amazonaws.com/freecodecamp/drums/RP4_KICK_1.mp3',
+                    key: 'X', 
+                    letter: 'X'}, 
+                    {name: 'Cev-H2',
+                    src: 'https://s3.amazonaws.com/freecodecamp/drums/Cev_H2.mp3',
+                    key: 'C', 
+                    letter: 'C'}
+]
+
+ReactDOM.render(<DrumMachine />, document.getElementById('app'))
+  
+  
+
+// make an array of 9 drum objects - done
+// make each one appear in the display as a button - done
+// next to the buttons have a display - done
+// on click of drum object button (or press of button), hear sound and display name in display view - done
+
+// power button controls whether buttons produce sound on click or not - todo
